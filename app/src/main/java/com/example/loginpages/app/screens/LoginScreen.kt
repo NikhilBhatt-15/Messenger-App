@@ -16,27 +16,41 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.loginpages.R
+import com.example.loginpages.app.Components.ButtonComponent
+import com.example.loginpages.app.Components.DividerTextComponent
 import com.example.loginpages.app.Components.HeadingTextComponent
 import com.example.loginpages.app.Components.MessengerRouter
+import com.example.loginpages.app.Components.MyTextField
 import com.example.loginpages.app.Components.NormalTextComponent
+import com.example.loginpages.app.Components.RegisterPageBar
 import com.example.loginpages.app.Components.Screen
+import com.example.loginpages.app.MessengerApp
+
 @Preview
 @Composable
 fun LoginScreen() {
     Surface(modifier = Modifier
         .fillMaxSize()
         .background(Color.White)
-        .padding(16.dp)) {
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            HeadingTextComponent(value = "Login Screen")
-            Spacer(modifier = Modifier.height(10.dp))
-            NormalTextComponent(value = "Mutual Funds are subject to market risks. Please read all the documents carefully...")
-            Spacer(modifier = Modifier.height(30.dp))
-            Button(onClick = { MessengerRouter.navigateTo(Screen.SignUpScreen)}) {
-                Text(text = "Back")
-            }
+        ) {
+        Column(modifier = Modifier.padding(24.dp),horizontalAlignment = Alignment.CenterHorizontally) {
+            NormalTextComponent(value = "Hey there")
+            HeadingTextComponent(value = "Welcome back")
+            MyTextField(label = "e-mail", icon = painterResource(id = R.drawable.baseline_email_24))
+            MyTextField(label = "password", icon = painterResource(id = R.drawable.baseline_lock_24),isPassword = true)
+            Spacer(modifier = Modifier.height(100.dp))
+            ButtonComponent(value = "Login")
+            Spacer(modifier = Modifier.height(25.dp))
+            DividerTextComponent()
+            Spacer(modifier = Modifier.height(50.dp))
+            RegisterPageBar(value = "", onTextSelected = {
+                MessengerRouter.navigateTo(Screen.SignUpScreen)
+            })
+
         }
 
     }

@@ -35,7 +35,7 @@ fun SignUpScreen() {
         Column(modifier = Modifier.padding(24.dp)) {
 
             NormalTextComponent(value = stringResource(id = com.example.loginpages.R.string.hello))
-            HeadingTextComponent(value = "Welcome To our App")
+            HeadingTextComponent(value = "Create an account")
             Spacer(modifier = Modifier.height(16.dp))
             MyTextField(label = "first name", icon =  painterResource(id = R.drawable.baseline_person_24))
             Spacer(modifier = Modifier.height(8.dp))

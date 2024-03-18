@@ -224,3 +224,32 @@ fun LoginPageBar(value: String,onTextSelected: (String) -> Unit) {
         ClickableLoginTextComponent(value = "", onTextSelected = onTextSelected)
     }
 }
+
+
+@Composable
+fun RegisterPageBar(value: String,onTextSelected: (String) -> Unit) {
+    Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+        ClickableRegisterTextComponent(value = "", onTextSelected = onTextSelected)
+    }
+}
+@Composable
+fun ClickableRegisterTextComponent(value: String,onTextSelected: (String) -> Unit) {
+    val initialText = "Doesn't have an account? "
+    val register = "register"
+    val annotatedString = buildAnnotatedString {
+        append(initialText)
+        withStyle(style = SpanStyle(color = Color.Blue, textDecoration = TextDecoration.Underline)){
+            pushStringAnnotation(tag = register, annotation = register)
+            append(register)
+        }
+    }
+    ClickableText(text = annotatedString, onClick ={offset->
+        annotatedString.getStringAnnotations(offset,offset)
+            .firstOrNull()?.also {
+                Log.d("Clickable component: ","{${it.item}}")
+                if(it.item == register){
+                    onTextSelected(it.item)
+                }
+            }
+    } )
+}

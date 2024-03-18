@@ -8,6 +8,8 @@ sealed class Screen() {
     object PrivacyPolicy:Screen()
     object TermsAndCondition:Screen()
     object LoginScreen:Screen()
+
+    object HomeScreen:Screen()
 }
 
 object MessengerRouter{
