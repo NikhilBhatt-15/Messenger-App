@@ -7,6 +7,7 @@ sealed class Screen() {
     object SignUpScreen:Screen()
     object PrivacyPolicy:Screen()
     object TermsAndCondition:Screen()
+    object LoginScreen:Screen()
 }
 
 object MessengerRouter{

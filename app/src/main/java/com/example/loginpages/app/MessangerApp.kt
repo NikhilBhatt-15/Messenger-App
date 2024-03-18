@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.example.loginpages.app.Components.MessengerRouter
 import com.example.loginpages.app.Components.Screen
+import com.example.loginpages.app.screens.LoginScreen
 import com.example.loginpages.app.screens.PrivacyPolicyScreen
 import com.example.loginpages.app.screens.SignUpScreen
 import com.example.loginpages.app.screens.TermsAndConditionScreen
@@ -30,6 +31,9 @@ fun MessengerApp() {
                 }
                 is Screen.TermsAndCondition-> {
                     TermsAndConditionScreen()
+                }
+                is Screen.LoginScreen->{
+                    LoginScreen()
                 }
 
             }

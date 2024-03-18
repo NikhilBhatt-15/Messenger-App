@@ -20,6 +20,7 @@ import com.example.loginpages.app.Components.ButtonComponent
 import com.example.loginpages.app.Components.CheckBoxBar
 import com.example.loginpages.app.Components.DividerTextComponent
 import com.example.loginpages.app.Components.HeadingTextComponent
+import com.example.loginpages.app.Components.LoginPageBar
 import com.example.loginpages.app.Components.MessengerRouter
 import com.example.loginpages.app.Components.MyTextField
 import com.example.loginpages.app.Components.NormalTextComponent
@@ -54,6 +55,11 @@ fun SignUpScreen() {
             ButtonComponent(value = "Register")
             Spacer(modifier = Modifier.height(40.dp))
             DividerTextComponent()
+            LoginPageBar(value = "", onTextSelected = {
+                if(it=="login"){
+                    MessengerRouter.navigateTo(Screen.LoginScreen)
+                }
+            })
         }
 
     }

@@ -161,6 +161,7 @@ fun ClickableTextComponent(value: String,onTextSelected:(String)->Unit) {
     })
 }
 
+
 @Composable
 fun ButtonComponent(value: String,modifier: Modifier= Modifier) {
     Box(modifier = modifier
@@ -191,5 +192,35 @@ fun DividerTextComponent() {
         Divider(modifier = Modifier
             .fillMaxWidth()
             .weight(1f), color = Color.Gray, thickness = 2.dp)
+    }
+}
+
+@Composable
+fun ClickableLoginTextComponent(value: String,onTextSelected: (String) -> Unit) {
+    val initialText = "Already have an account? "
+    val login = "login"
+    val annotatedString = buildAnnotatedString {
+        append(initialText)
+        withStyle(style = SpanStyle(color = Color.Blue, textDecoration = TextDecoration.Underline)){
+            pushStringAnnotation(tag = login, annotation = login)
+            append(login)
+        }
+    }
+    ClickableText(text = annotatedString, onClick ={offset->
+        annotatedString.getStringAnnotations(offset,offset)
+            .firstOrNull()?.also {
+                Log.d("Clickable component: ","{${it.item}}")
+                if(it.item == login){
+                    onTextSelected(it.item)
+                }
+            }
+
+    } )
+}
+
+@Composable
+fun LoginPageBar(value: String,onTextSelected: (String) -> Unit) {
+    Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+        ClickableLoginTextComponent(value = "", onTextSelected = onTextSelected)
     }
 }
