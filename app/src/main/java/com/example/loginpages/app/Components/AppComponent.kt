@@ -80,7 +80,7 @@ fun HeadingTextComponent(value:String,modifier: Modifier=Modifier) {
 }
 
 @Composable
-fun MyTextField(label:String,icon:Painter,isPassword:Boolean=false) {
+fun MyTextField(label:String,icon:Painter,isPassword:Boolean=false,onChange:(String)->Unit) {
     val localFocusManager = LocalFocusManager.current
     var text by remember {
         mutableStateOf("")
@@ -90,7 +90,10 @@ fun MyTextField(label:String,icon:Painter,isPassword:Boolean=false) {
     }
     OutlinedTextField(modifier = Modifier
         .fillMaxWidth()
-        .clip(RoundedCornerShape(4.dp)),value = text, onValueChange ={ text=it },
+        .clip(RoundedCornerShape(4.dp)),value = text, onValueChange ={
+            text=it
+        onChange(it)
+                                                                     },
         keyboardOptions = KeyboardOptions(keyboardType = if(isPassword)KeyboardType.Password else KeyboardType.Text, imeAction = if (isPassword) ImeAction.Done else
         ImeAction.Next),
         keyboardActions = KeyboardActions{
