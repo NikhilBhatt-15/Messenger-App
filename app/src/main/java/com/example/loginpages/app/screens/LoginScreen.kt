@@ -40,10 +40,10 @@ fun LoginScreen() {
         Column(modifier = Modifier.padding(24.dp),horizontalAlignment = Alignment.CenterHorizontally) {
             NormalTextComponent(value = "Hey there")
             HeadingTextComponent(value = "Welcome back")
-            MyTextField(label = "e-mail", icon = painterResource(id = R.drawable.baseline_email_24)){}
-            MyTextField(label = "password", icon = painterResource(id = R.drawable.baseline_lock_24),isPassword = true){}
+            MyTextField(label = "e-mail", icon = painterResource(id = R.drawable.baseline_email_24),false,isError = false){}
+            MyTextField(label = "password", icon = painterResource(id = R.drawable.baseline_lock_24),isPassword = true,isError = false){}
             Spacer(modifier = Modifier.height(100.dp))
-            ButtonComponent(value = "Login")
+            ButtonComponent(value = "Login"){}
             Spacer(modifier = Modifier.height(25.dp))
             DividerTextComponent()
             Spacer(modifier = Modifier.height(50.dp))
