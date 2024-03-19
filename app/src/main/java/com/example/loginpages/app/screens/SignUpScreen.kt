@@ -38,11 +38,11 @@ fun SignUpScreen() {
             HeadingTextComponent(value = "Create an account")
             Spacer(modifier = Modifier.height(16.dp))
             MyTextField(label = "first name", icon =  painterResource(id = R.drawable.baseline_person_24))
-            Spacer(modifier = Modifier.height(8.dp))
+//            Spacer(modifier = Modifier.height(8.dp))
             MyTextField(label = "last name", icon =  painterResource(id = R.drawable.baseline_person_24))
-            Spacer(modifier = Modifier.height(8.dp))
+//            Spacer(modifier = Modifier.height(8.dp))
             MyTextField(label = "e-mail", icon =  painterResource(id = R.drawable.baseline_email_24))
-            Spacer(modifier = Modifier.height(8.dp))
+//            Spacer(modifier = Modifier.height(8.dp))
             MyTextField(label = "password", icon =  painterResource(id = R.drawable.baseline_lock_24),true)
             CheckBoxBar(value = ""){
                     if(it == "Privacy Policy") {

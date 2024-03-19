@@ -26,7 +26,7 @@ fun TermsAndConditionScreen() {
     Surface(modifier = Modifier
         .fillMaxSize()
         .background(Color.White)
-        .padding(16.dp)) {
+        ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             HeadingTextComponent(value = "Terms And Condition")
             Spacer(modifier = Modifier.height(10.dp))

@@ -26,7 +26,7 @@ fun PrivacyPolicyScreen() {
     Surface(modifier = Modifier
         .fillMaxSize()
         .background(Color.White)
-        .padding(16.dp)) {
+        ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             HeadingTextComponent(value = "Privacy Policy")
             Spacer(modifier = Modifier.height(10.dp))

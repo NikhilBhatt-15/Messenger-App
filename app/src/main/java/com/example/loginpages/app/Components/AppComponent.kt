@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Button
@@ -29,10 +30,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
@@ -78,6 +81,7 @@ fun HeadingTextComponent(value:String,modifier: Modifier=Modifier) {
 
 @Composable
 fun MyTextField(label:String,icon:Painter,isPassword:Boolean=false) {
+    val localFocusManager = LocalFocusManager.current
     var text by remember {
         mutableStateOf("")
     }
@@ -89,6 +93,13 @@ fun MyTextField(label:String,icon:Painter,isPassword:Boolean=false) {
         .clip(RoundedCornerShape(4.dp)),value = text, onValueChange ={ text=it },
         keyboardOptions = KeyboardOptions(keyboardType = if(isPassword)KeyboardType.Password else KeyboardType.Text, imeAction = if (isPassword) ImeAction.Done else
         ImeAction.Next),
+        keyboardActions = KeyboardActions{
+                                         if(isPassword){ localFocusManager.clearFocus()
+                                         }
+            else{
+                localFocusManager.moveFocus(focusDirection = FocusDirection.Next)
+                                         }
+        },
         leadingIcon = {
             Icon(painter = icon, contentDescription = null, tint = Color.White)
         },
@@ -96,6 +107,7 @@ fun MyTextField(label:String,icon:Painter,isPassword:Boolean=false) {
         visualTransformation = if(isHidden and isPassword) PasswordVisualTransformation() else VisualTransformation.None ,
         colors = TextFieldDefaults.colors(focusedContainerColor = Color(0x0F686666)),
         singleLine = true,
+        maxLines = 1,
         label = {
             Text(text = label)
         }
