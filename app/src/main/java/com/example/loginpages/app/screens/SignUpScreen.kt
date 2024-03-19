@@ -40,19 +40,24 @@ fun SignUpScreen(loginViewModel: LoginViewModel= viewModel()) {
             NormalTextComponent(value = stringResource(id = com.example.loginpages.R.string.hello))
             HeadingTextComponent(value = "Create an account")
             Spacer(modifier = Modifier.height(16.dp))
-            MyTextField(label = "first name", icon =  painterResource(id = R.drawable.baseline_person_24)){
+            MyTextField(label = "first name", icon =  painterResource(id = R.drawable.baseline_person_24)
+                ,isError = loginViewModel.registrationUiState.value.firstNameError
+            ){
                 loginViewModel.onEvent(UiEvent.FirstNameChanged(it))
             }
 //            Spacer(modifier = Modifier.height(8.dp))
-            MyTextField(label = "last name", icon =  painterResource(id = R.drawable.baseline_person_24)){
+            MyTextField(label = "last name", icon =  painterResource(id = R.drawable.baseline_person_24)
+                ,isError = loginViewModel.registrationUiState.value.lastNameError){
                 loginViewModel.onEvent(UiEvent.LastNameChanged(it))
             }
 //            Spacer(modifier = Modifier.height(8.dp))
-            MyTextField(label = "e-mail", icon =  painterResource(id = R.drawable.baseline_email_24)){
+            MyTextField(label = "e-mail", icon =  painterResource(id = R.drawable.baseline_email_24)
+                ,isError = loginViewModel.registrationUiState.value.emailError){
                 loginViewModel.onEvent(UiEvent.EmailChanged(it))
             }
 //            Spacer(modifier = Modifier.height(8.dp))
-            MyTextField(label = "password", icon =  painterResource(id = R.drawable.baseline_lock_24),true){
+            MyTextField(label = "password", icon =  painterResource(id = R.drawable.baseline_lock_24),true
+                ,isError = loginViewModel.registrationUiState.value.passwordError){
                 loginViewModel.onEvent(UiEvent.PasswordChanged(it))
             }
             CheckBoxBar(value = ""){
@@ -63,7 +68,9 @@ fun SignUpScreen(loginViewModel: LoginViewModel= viewModel()) {
                     }
             }
             Spacer(modifier = Modifier.height(80.dp))
-            ButtonComponent(value = "Register")
+            ButtonComponent(value = "Register"){
+                loginViewModel.onEvent(UiEvent.RegisterButtonClicked)
+            }
             Spacer(modifier = Modifier.height(40.dp))
             DividerTextComponent()
             LoginPageBar(value = "", onTextSelected = {

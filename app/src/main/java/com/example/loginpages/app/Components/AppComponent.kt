@@ -1,6 +1,7 @@
 package com.example.loginpages.app.Components
 
 
+import android.service.autofill.OnClickAction
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -80,7 +81,8 @@ fun HeadingTextComponent(value:String,modifier: Modifier=Modifier) {
 }
 
 @Composable
-fun MyTextField(label:String,icon:Painter,isPassword:Boolean=false,onChange:(String)->Unit) {
+fun MyTextField(label:String,icon:Painter,isPassword:Boolean=false,isError:Boolean,onChange:(String)->Unit) {
+        Log.d("Error",isError.toString())
     val localFocusManager = LocalFocusManager.current
     var text by remember {
         mutableStateOf("")
@@ -103,6 +105,7 @@ fun MyTextField(label:String,icon:Painter,isPassword:Boolean=false,onChange:(Str
                 localFocusManager.moveFocus(focusDirection = FocusDirection.Next)
                                          }
         },
+
         leadingIcon = {
             Icon(painter = icon, contentDescription = null, tint = Color.White)
         },
@@ -121,7 +124,7 @@ fun MyTextField(label:String,icon:Painter,isPassword:Boolean=false,onChange:(Str
             else{
                 null
             }
-        }
+        }, isError = isError
     )
 }
 
@@ -178,23 +181,37 @@ fun ClickableTextComponent(value: String,onTextSelected:(String)->Unit) {
 
 
 @Composable
-fun ButtonComponent(value: String,modifier: Modifier= Modifier) {
-    Box(modifier = modifier
+fun ButtonComponent(value: String,modifier: Modifier= Modifier,onClick:()->Unit) {
+    Button(modifier = modifier
         .fillMaxWidth()
         .heightIn(min = 52.dp)
         .clip(RoundedCornerShape(48.dp))
-        .background(brush = Brush.horizontalGradient(listOf(Color.Cyan, Color.Blue, Color.Cyan)))
-        .clickable { }
-        , contentAlignment = Alignment.Center
-    ) {
-            Text(
-                text = value,
-                textAlign = TextAlign.Center,
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.White
-            )
+        .background(brush = Brush.horizontalGradient(listOf(Color.Cyan, Color.Blue, Color.Cyan))),
+        onClick = { onClick() }) {
+        Text(
+            text = value,
+            textAlign = TextAlign.Center,
+            fontSize = 18.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color.White
+        )
     }
+//    Box(modifier = modifier
+//        .fillMaxWidth()
+//        .heightIn(min = 52.dp)
+//        .clip(RoundedCornerShape(48.dp))
+//        .background(brush = Brush.horizontalGradient(listOf(Color.Cyan, Color.Blue, Color.Cyan)))
+//        .clickable { onClick() }
+//        , contentAlignment = Alignment.Center
+//    ) {
+//            Text(
+//                text = value,
+//                textAlign = TextAlign.Center,
+//                fontSize = 18.sp,
+//                fontWeight = FontWeight.Bold,
+//                color = Color.White
+//            )
+//    }
 }
 @Preview
 @Composable
